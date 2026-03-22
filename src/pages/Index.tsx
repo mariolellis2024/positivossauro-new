@@ -272,6 +272,8 @@ export default function Index() {
         </p>
       </header>
 
+      <InstallPrompt />
+
       {/* Game */}
       <main className="flex flex-col md:flex-row items-center md:items-start gap-5 md:gap-10 w-full max-w-[800px]">
         {/* Word list + Dino */}
@@ -345,7 +347,7 @@ export default function Index() {
         streak={progress.streak.count}
         totalWords={words.length}
       />
-      <InstallPrompt />
+
       <CookieBanner />
     </div>
   );

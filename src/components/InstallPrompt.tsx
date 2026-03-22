@@ -8,7 +8,6 @@ interface BeforeInstallPromptEvent extends Event {
 type InstallMode = "native" | "ios" | "macos-safari" | null;
 
 function detectInstallMode(): InstallMode {
-  // Already installed as standalone — don't show anything
   if (window.matchMedia("(display-mode: standalone)").matches) return null;
   // @ts-expect-error — Safari-specific property
   if (navigator.standalone === true) return null;
@@ -23,11 +22,8 @@ function detectInstallMode(): InstallMode {
 
   if (isIOS) return "ios";
   if (isMacSafari) return "macos-safari";
-
-  // Chrome, Edge, Samsung Internet, Opera etc. support beforeinstallprompt
   return "native";
 }
-
 
 export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] =
@@ -36,12 +32,10 @@ export default function InstallPrompt() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-
     const detected = detectInstallMode();
     setMode(detected);
 
     if (detected === "ios" || detected === "macos-safari") {
-      // Show manual instructions after a short delay
       const timer = setTimeout(() => setShow(true), 2000);
       return () => clearTimeout(timer);
     }
@@ -73,19 +67,19 @@ export default function InstallPrompt() {
 
   return (
     <div
-      className="fixed bottom-20 left-1/2 z-[90] -translate-x-1/2 w-[calc(100%-2.5rem)] max-w-sm"
+      className="w-full max-w-[350px] mx-auto"
       style={{
         animation:
           "popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards",
       }}
     >
       <div
-        className="bg-card border-[3px] border-posi-green rounded-2xl px-5 py-3 flex items-center gap-3"
-        style={{ boxShadow: "0 8px 20px rgba(0,0,0,0.1)" }}
+        className="bg-card border-[3px] border-posi-green rounded-2xl px-4 py-3 flex items-center gap-3"
+        style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}
       >
-        <span className="text-2xl shrink-0">🦕</span>
+        <span className="text-xl shrink-0">🦕</span>
         <div className="flex flex-col flex-1 min-w-0">
-          <span className="text-sm font-bold text-secondary-foreground">
+          <span className="text-sm font-bold text-secondary-foreground leading-tight">
             adicione na tela inicial!
           </span>
           <span className="text-xs text-muted-foreground leading-snug">
@@ -109,14 +103,14 @@ export default function InstallPrompt() {
         {mode === "native" && (
           <button
             onClick={handleInstall}
-            className="bg-posi-green text-primary-foreground border-none px-4 py-1.5 rounded-full text-xs font-bold cursor-pointer transition-all active:translate-y-0.5 lowercase shrink-0"
+            className="bg-posi-green text-primary-foreground border-none px-3 py-1.5 rounded-full text-xs font-bold cursor-pointer transition-all active:translate-y-0.5 lowercase shrink-0"
           >
             instalar
           </button>
         )}
         <button
           onClick={dismiss}
-          className="text-muted-foreground text-lg cursor-pointer bg-transparent border-none ml-1 shrink-0"
+          className="text-muted-foreground text-base cursor-pointer bg-transparent border-none shrink-0 leading-none"
         >
           ✕
         </button>
