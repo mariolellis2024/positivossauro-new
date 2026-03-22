@@ -1,0 +1,19 @@
+{
+  "name": "Positivossauro – Caça-Palavras",
+  "short_name": "Positivossauro",
+  "description": "Encontre palavras positivas no caça-palavras do Positivossauro.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f0e1",
+  "theme_color": "#7ab356",
+  "orientation": "portrait",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}

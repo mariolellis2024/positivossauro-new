@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Positivossauro – Caça-Palavras</title>
+    <meta name="description" content="Encontre palavras positivas no caça-palavras do Positivossauro." />
+    <meta name="author" content="Positivossauro" />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="apple-touch-icon" href="/favicon.webp" />
+    <meta name="theme-color" content="#7ab356" />
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Positivossauro – Caça-Palavras" />
+    <meta property="og:description" content="Encontre palavras positivas no caça-palavras do Positivossauro." />
+    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e2193c22-150a-4614-ad29-b02f64420b60/id-preview-2f92267d--2d429f83-9a50-44e6-86dc-fa422ba092fd.lovable.app-1773543782515.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Positivossauro – Caça-Palavras" />
+    <meta name="twitter:description" content="Encontre palavras positivas no caça-palavras do Positivossauro." />
+    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e2193c22-150a-4614-ad29-b02f64420b60/id-preview-2f92267d--2d429f83-9a50-44e6-86dc-fa422ba092fd.lovable.app-1773543782515.png" />
+
+    <!-- Google Analytics (LGPD: bloqueado por padrão) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MNXC6QK097"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { 'analytics_storage': 'denied' });
+      gtag('js', new Date());
+      gtag('config', 'G-MNXC6QK097', { 'anonymize_ip': true });
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Clear broken service workers first, then register fresh
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          regs.forEach(function(r) { r.unregister(); });
+        });
+        caches.keys().then(function(keys) {
+          keys.forEach(function(k) { caches.delete(k); });
+        });
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function() {});
+        });
+      }
+    </script>
+  </body>
+</html>

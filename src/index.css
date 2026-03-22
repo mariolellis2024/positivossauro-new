@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 50% 95%;
+    --foreground: 0 0% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 18%;
+
+    --primary: 100 35% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 100 15% 85%;
+    --secondary-foreground: 100 25% 30%;
+
+    --muted: 100 10% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 42 100% 64%;
+    --accent-foreground: 0 0% 18%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 100 20% 75%;
+    --input: 100 20% 75%;
+    --ring: 100 35% 42%;
+
+    --radius: 0.75rem;
+
+    /* Positivossauro custom tokens */
+    --posi-green: 100 35% 55%;
+    --posi-green-dark: 100 25% 30%;
+    --posi-sky: 202 65% 76%;
+    --posi-sun: 42 100% 64%;
+    --posi-creme: 45 50% 95%;
+
+    --card-shadow: 0 0 0 1px rgba(0,0,0,.02), 0 2px 4px rgba(0,0,0,.04), 0 12px 24px -12px rgba(0,0,0,.08);
+    --card-shadow-hover: 0 0 0 1px rgba(0,0,0,.04), 0 4px 8px rgba(0,0,0,.06), 0 20px 32px -12px rgba(0,0,0,.12);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Pangolin', cursive, sans-serif;
+    text-transform: lowercase;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(-2deg); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes hint-pulse {
+  0%, 100% { background-color: hsl(var(--card)); }
+  50% { background-color: hsl(var(--posi-sun)); }
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc(cos(var(--confetti-angle, 0deg)) * var(--confetti-speed, 2) * 60px),
+      calc(sin(var(--confetti-angle, 0deg)) * var(--confetti-speed, 2) * 60px + 120px)
+    ) rotate(var(--confetti-rot, 180deg));
+  }
+}
