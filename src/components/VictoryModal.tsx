@@ -97,7 +97,7 @@ export default function VictoryModal({
             className="bg-[#25D366] text-white border-none px-6 py-2.5 text-sm rounded-full cursor-pointer font-bold transition-all active:translate-y-0.5 lowercase w-full"
             style={{ boxShadow: "0 3px 0 #1da851" }}
           >
-            📱 enviar pro whatsapp
+            📱 compartilhar com um amigo
           </button>
         </div>
       </div>
