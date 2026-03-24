@@ -43,7 +43,7 @@ export function generateShareText(opts: {
     grid,
     streakLine,
     "",
-    "jogue também: positivossauro.com",
+    "jogue também: positivossauro.com.br",
   ].filter(Boolean).join("\n");
 }
 
