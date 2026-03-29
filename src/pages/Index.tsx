@@ -36,12 +36,19 @@ function shuffleArray(arr: number[]): number[] {
   return a;
 }
 
-function createShuffledOrder(): number[] {
-  return shuffleArray(Array.from({ length: COLLECTIONS.length }, (_, i) => i));
+function createShuffledOrder(completedCollections: number[] = []): number[] {
+  const all = Array.from({ length: COLLECTIONS.length }, (_, i) => i);
+  const uncompleted = all.filter((i) => !completedCollections.includes(i));
+  const completed = all.filter((i) => completedCollections.includes(i));
+  // Put uncompleted collections first (shuffled), then completed ones (shuffled)
+  return [...shuffleArray(uncompleted), ...shuffleArray(completed)];
 }
 
 export default function Index() {
-  const [shuffledOrder, setShuffledOrder] = useState(createShuffledOrder);
+  const [shuffledOrder, setShuffledOrder] = useState(() => {
+    const saved = loadProgress();
+    return createShuffledOrder(saved.completedCollections);
+  });
   const [playIndex, setPlayIndex] = useState(0);
 
   const currentLevel = shuffledOrder[playIndex % shuffledOrder.length];
@@ -234,10 +241,10 @@ export default function Index() {
   const restart = () => {
     const nextPlayIndex = playIndex + 1;
 
-    // If we've exhausted all collections, re-shuffle
+    // If we've exhausted all collections, re-shuffle using latest progress
     let order = shuffledOrder;
     if (nextPlayIndex >= shuffledOrder.length) {
-      order = createShuffledOrder();
+      order = createShuffledOrder(progress.completedCollections);
       setShuffledOrder(order);
     }
 
